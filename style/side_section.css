@@ -1,0 +1,66 @@
+.side_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    width: 350px;
+    box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.side_header{
+    margin-bottom: 24px;
+}
+
+.empty_basket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 0px;
+    gap: 12px;
+}
+
+.filled_basket_header{
+    margin-top: 24px;
+    padding-left: 24px;
+}
+
+.filled_basket_row{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 24px;
+    padding: 0px 12px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.calculator{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 8px;
+}
+
+.order_price{
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 4px;
+}
+
+.subtotal{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delivery_cost{
+    display: flex;
+    justify-content: space-between;
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}

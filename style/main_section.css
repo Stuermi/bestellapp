@@ -1,0 +1,90 @@
+.main_section{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 350px);
+    background-color: #FCFCFB;
+}
+
+.header_image_container{
+    position: relative;
+    width: 100%;
+}
+
+.pizzeria_logo{
+    width: 125px;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 24px;
+    left: 80px;
+}
+
+.restaurant_info{
+    margin: 24px 80px;
+}
+
+.restaurant_info h1{
+    margin-bottom: 8px;
+}
+
+.restaurant_information_row{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu_categories{
+    display: flex;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0px 80px;
+}
+
+.menu_category_selection{
+    display: flex;
+    gap: 16px;
+}
+
+
+
+.menu_category_selection a{
+    text-decoration: none;
+    padding: 10px;
+
+}
+
+.menu_category_selection a:hover{
+    background-color: #e0e0e0;
+    border-radius: 90px;
+}
+
+.menu{
+    margin: 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dish{
+    position: relative;
+    border-style: solid;
+    border-color: #DBD9D7;
+    border-width: 1px;
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.dish:hover{
+    background-color: #F5F5F4;
+}
+
+.add_button{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.dish span{
+    font-weight: bold;
+    font-size: 20px;
+}

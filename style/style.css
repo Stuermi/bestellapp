@@ -1,0 +1,97 @@
+@font-face {
+    font-family: Roboto;
+    src: url(../assets/fonts/Roboto-Regular.ttf);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Roboto;
+    color: #262626;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cac9c8; 
+}
+   
+::-webkit-scrollbar-thumb {
+    border-radius: 24px;
+    background: rgb(255, 128, 0); 
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background: #707070; 
+}
+
+header{
+    height: 128px;
+    background-color: #FF8000;
+    padding: 24px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.d_none{
+    display: none !important;
+}
+
+.add_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DBD9D7;
+    border-radius: 90px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.add_button:hover{
+    background-color: #e0e0e0;
+}
+
+.calc_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DBD9D7;
+    border-radius: 90px;
+    cursor: pointer;
+}
+
+.calc_button:hover{
+    background-color: #e0e0e0;
+}
+
+hr{
+    border-width: 0;
+    color: rgba(0, 0, 0, 0.3);
+    width: 350px;
+    border-top: 1px solid !important;
+}
+
+footer{
+    height: 128px;
+    background-color: #EFEDEA;
+    position: relative;
+}

@@ -1,0 +1,45 @@
+.header_logo{
+    height: 80px;
+}
+
+.header_image{
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.basket_icon{
+    width: 40px;
+}
+
+.rating_star{
+    width: 16px;
+}
+
+.plus_icon{
+    height: 24px;
+    width: 24px;
+}
+
+.plus_icon_calc{
+    height: 16px;
+    width: 16px;
+} 
+
+.minus_icon_calc{
+    width: 16px;
+    height: 3px;
+}
+
+.bag_icon{
+    height: 16px;
+}
+
+.delivery_icon{
+    height: 24px;
+}
+
+.trash_icon{
+    height: 20px;
+    cursor: pointer;
+}
