@@ -31,13 +31,25 @@ function renderMenu(){
     menuContentRef.innerHTML = '';
 
     for (let menuCategoryIndex = 0; menuCategoryIndex < pizzeria.menuCategory.length; menuCategoryIndex++) {
-        menuContentRef.innerHTML += getMenuTemplate(menuCategoryIndex);
-        loadMenuName(menuCategoryIndex);
+        
+
+        for (let dishIndex = 0; dishIndex < pizzeria.menuCategory[menuCategoryIndex].items.length; dishIndex++) {
+            menuContentRef.innerHTML += getMenuTemplate(menuCategoryIndex, dishIndex)
+            loadMenuName(menuCategoryIndex);
+            // loadDish(menuCategoryIndex, dishIndex);
+        }
     }
 }
 
 function loadMenuName(menuCategoryIndex){
     let menuCategoryRef = document.getElementById(`menu_name${menuCategoryIndex}`);
+    menuCategoryRef.innerHTML = '';
     menuCategoryRef.innerHTML += pizzeria.menuCategory[menuCategoryIndex].category;
 }
 
+// function loadDish(menuCategoryIndex, dishIndex){
+//     let dishContentRef = document.getElementById(`dish${dishIndex}`);
+//     for (let dishIndex = 0; dishIndex < pizzeria.menuCategory[menuCategoryIndex].items.length; dishIndex++) {
+//         dishContentRef.innerHTML += getDishTemplate(dishIndex)
+//     }
+// }

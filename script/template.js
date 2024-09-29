@@ -78,15 +78,16 @@ function getMenuCategoriesTemplate(menuCategoryIndex){
                 </nav>`
 }
 
-function getMenuTemplate(menuCategoryIndex){
+function getMenuTemplate(menuCategoryIndex, dishIndex){
     return `
             <h2 id="menu_name${menuCategoryIndex}"></h2>
-                <div id="dish" class="dish">
-                    <h2>name_dish</h2>
-                    <p>ingredients</p>
-                    <span>price_dish</span>
+                <div id="dish${dishIndex}" class="dish">
+                    <h2 id="dish_name${dishIndex}">dish_name</h2>
+                    <p id="ingredients${dishIndex}">ingredients</p>
+                    <span id="dish_price${dishIndex}">dish_price</span>
                     <div class="add_button">
                         <img class="plus_icon" src="./assets/icon/plus_icon_color.png" alt="Plus Icon">
                     </div>
                 </div>`
 }
+
