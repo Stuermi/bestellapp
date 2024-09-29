@@ -19,17 +19,7 @@ function getContentTemplate(menuCategoryIndex){
 
             <div id="menu_categories" class="menu_categories"></div>
 
-            <section class="menu">
-                <h2>name_menu_category</h2>
-                <div class="dish">
-                    <h2>name_dish</h2>
-                    <p>ingredients</p>
-                    <span>price_dish</span>
-                    <div class="add_button">
-                        <img class="plus_icon" src="./assets/icon/plus_icon_color.png" alt="Plus Icon">
-                    </div>
-                </div>
-            </section>
+            <div id="menu" class="menu"></div>
         </section>
 
         <section class="side_section">
@@ -77,7 +67,6 @@ function getContentTemplate(menuCategoryIndex){
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>`
 }
@@ -87,4 +76,17 @@ function getMenuCategoriesTemplate(menuCategoryIndex){
                 <nav class="menu_category_selection">
                     <a id="menu_category${menuCategoryIndex}" href="#"></a>
                 </nav>`
+}
+
+function getMenuTemplate(menuCategoryIndex){
+    return `
+            <h2 id="menu_name${menuCategoryIndex}"></h2>
+                <div id="dish" class="dish">
+                    <h2>name_dish</h2>
+                    <p>ingredients</p>
+                    <span>price_dish</span>
+                    <div class="add_button">
+                        <img class="plus_icon" src="./assets/icon/plus_icon_color.png" alt="Plus Icon">
+                    </div>
+                </div>`
 }
