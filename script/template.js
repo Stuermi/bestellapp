@@ -9,9 +9,9 @@ function getContentTemplate(menuCategoryIndex){
                 <h1>Pizzeria Buon Appetito</h1>
                 <div class="restaurant_information_row">
                     <p>Bewertung (4,2 von 5 <img class="rating_star" src="./assets/icon/star_color.png"
-                            alt="Stern Orange">) •</p>
+                            alt="Stern Orange">)</p>
                     <img title="Mindestbestellwert" class="bag_icon" src="assets/icon/bag.png" alt="Shopping Bag Icon">
-                    <p>${pizzeria.minimumOrder.toFixed(2).replace('.',',')} € •</p>
+                    <p>${pizzeria.minimumOrder.toFixed(2).replace('.',',')} €</p>
                     <img title="Lieferkosten" class="delivery_icon" src="assets/icon/bike.png" alt="Bike Icon">
                     <p>${pizzeria.deliveryCost.toFixed(2).replace('.',',')} €</p>
                 </div>
@@ -78,13 +78,19 @@ function getMenuCategoriesTemplate(menuCategoryIndex){
                 </nav>`
 }
 
-function getMenuTemplate(menuCategoryIndex, dishIndex){
+function getMenuTemplate(menuCategoryIndex){
     return `
             <h2 id="menu_name${menuCategoryIndex}"></h2>
-                <div id="dish${dishIndex}" class="dish">
-                    <h2 id="dish_name${dishIndex}">dish_name</h2>
-                    <p id="ingredients${dishIndex}">ingredients</p>
-                    <span id="dish_price${dishIndex}">dish_price</span>
+                <div id="dish_content${menuCategoryIndex}" class="dish_content"></div>
+`
+}
+
+function getDishTemplate(menuCategoryIndex, dishIndex){
+    return `
+                <div id="dish${menuCategoryIndex}${dishIndex}" class="dish">
+                    <h2 id="dish_name${menuCategoryIndex}${dishIndex}">gfege</h2>
+                    <p id="ingredients${menuCategoryIndex}${dishIndex}">geegeg</p>
+                    <span id="dish_price${menuCategoryIndex}${dishIndex}">ggegeeg</span>
                     <div class="add_button">
                         <img class="plus_icon" src="./assets/icon/plus_icon_color.png" alt="Plus Icon">
                     </div>

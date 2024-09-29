@@ -31,14 +31,10 @@ function renderMenu(){
     menuContentRef.innerHTML = '';
 
     for (let menuCategoryIndex = 0; menuCategoryIndex < pizzeria.menuCategory.length; menuCategoryIndex++) {
-        
-
-        for (let dishIndex = 0; dishIndex < pizzeria.menuCategory[menuCategoryIndex].items.length; dishIndex++) {
-            menuContentRef.innerHTML += getMenuTemplate(menuCategoryIndex, dishIndex)
+            menuContentRef.innerHTML += getMenuTemplate(menuCategoryIndex)
             loadMenuName(menuCategoryIndex);
-            // loadDish(menuCategoryIndex, dishIndex);
+            renderDish(menuCategoryIndex);
         }
-    }
 }
 
 function loadMenuName(menuCategoryIndex){
@@ -47,9 +43,19 @@ function loadMenuName(menuCategoryIndex){
     menuCategoryRef.innerHTML += pizzeria.menuCategory[menuCategoryIndex].category;
 }
 
-// function loadDish(menuCategoryIndex, dishIndex){
-//     let dishContentRef = document.getElementById(`dish${dishIndex}`);
-//     for (let dishIndex = 0; dishIndex < pizzeria.menuCategory[menuCategoryIndex].items.length; dishIndex++) {
-//         dishContentRef.innerHTML += getDishTemplate(dishIndex)
-//     }
-// }
+function renderDish(menuCategoryIndex){
+    let dishContentRef = document.getElementById(`dish_content${menuCategoryIndex}`);
+    for (let dishIndex = 0; dishIndex < pizzeria.menuCategory[menuCategoryIndex].items.length; dishIndex++) {
+        dishContentRef.innerHTML += getDishTemplate(menuCategoryIndex, dishIndex);
+        loadDish(menuCategoryIndex, dishIndex);
+    }
+}
+
+function loadDish(menuCategoryIndex, dishIndex){
+    let pizzaNameRef = document.getElementById(`dish_name${menuCategoryIndex}${dishIndex}`);
+    let pizzaIngredientsRef = document.getElementById(`ingredients${menuCategoryIndex}${dishIndex}`);
+    let pizzaPriceRef = document.getElementById(`dish_price${menuCategoryIndex}${dishIndex}`);
+    pizzaNameRef.innerHTML = pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish;
+    pizzaIngredientsRef.innerHTML = pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].ingredients;
+    pizzaPriceRef.innerHTML = pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].priceDish.toFixed(2).replace('.',',')+ ' €';    
+}
