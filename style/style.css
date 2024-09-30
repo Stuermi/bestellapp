@@ -48,6 +48,10 @@ main{
     display: none !important;
 }
 
+.is_pinned{
+    background-color: red;
+}
+
 .add_button{
     display: flex;
     justify-content: center;

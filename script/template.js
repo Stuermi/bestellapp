@@ -5,7 +5,7 @@ function getContentTemplate() {
                 <img class="pizzeria_logo" src="./assets/icon/pizzeria_logo.png" alt="Pizzeria Logo">
             </div>
 
-            <div class="restaurant_info">
+            <div id="restaurant_info" class="restaurant_info">
                 <h1>Pizzeria Buon Appetito</h1>
                 <div class="restaurant_information_row">
                     <p>Bewertung (4,2 von 5 <img class="rating_star" src="./assets/icon/star_color.png"
@@ -25,8 +25,9 @@ function getContentTemplate() {
         <section class="side_section">
             <div class="side_header">
                 <h2>Warenkorb</h2>
+                <hr>
             </div>
-            <hr>
+
             <div class="basket">
                 <div id="empty_basket" class="empty_basket">
                     <img class="basket_icon" src="./assets/icon/shopping-basket.png" alt="Basket Icon">

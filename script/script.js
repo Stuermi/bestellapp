@@ -9,6 +9,7 @@ function init() {
     renderMainContent();
     renderMenuCategory();
     renderMenu();
+    addStickyClassOnScroll();
 }
 
 function renderMainContent() {
@@ -194,8 +195,9 @@ function updateTotal(basketIndex){
 }
 
 function removeDishFromBasket(basketIndex) {
-    basket.splice(basketIndex)
+    basket.splice(basketIndex, 1);
     renderFilledBasket();
+    calculateTotalPrice();
 }
 
 function bubblingProtection(event) {

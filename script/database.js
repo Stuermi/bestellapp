@@ -3,6 +3,29 @@ let pizzeria = {
         "deliveryCost": 1.00,
         "menuCategory": [
             {
+                "category": "Beliebte Gerichte",
+                "items": [
+                    {
+                        "dish": "Salat Buon Appetito",
+                        "ingredients": "mit Mais Croutons und gebratenem Hähnchenbrustfilet",
+                        "amount": 1,
+                        "priceDish": 9.40
+                    },
+                    {
+                        "dish": "Tortellini mit Schinken-Sahnesauce",
+                        "ingredients": "gefüllte Nudeln mit Schinken-Sahnesauce",
+                        "amount": 1,
+                        "priceDish": 10.20
+                    },
+                    {
+                        "dish": "Pizza Serano",
+                        "ingredients": "mit Seranoschinken, Rucola und geriebenem Parmesan",
+                        "amount": 1,
+                        "priceDish": 13.90
+                    }
+                ]
+            },
+            {
                 "category": "Pizza",
                 "items": [
                     {
@@ -117,6 +140,35 @@ let pizzeria = {
                         "priceDish": 6.90
                     }
                 ]
-            }
+            },
+            {
+                "category": "Getränke",
+                "items": [
+                    {
+                        "dish": "Coca Cola 0,5l",
+                        "ingredients": "",
+                        "amount": 1,
+                        "priceDish": 2.75
+                    },
+                    {
+                        "dish": "Coca Cola Zero 0,5l",
+                        "ingredients": "",
+                        "amount": 1,
+                        "priceDish": 2.75
+                    },
+                    {
+                        "dish": "Mezzo Mix 0,5l",
+                        "ingredients": "",
+                        "amount": 1,
+                        "priceDish": 2.75
+                    },
+                    {
+                        "dish": "Fanta 0,5l",
+                        "ingredients": "",
+                        "amount": 1,
+                        "priceDish": 2.75
+                    }
+                ]
+            },
         ]
     };
