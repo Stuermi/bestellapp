@@ -47,6 +47,19 @@ function loadMenuName(menuCategoryIndex) {
     let menuCategoryRef = document.getElementById(`menu_name${menuCategoryIndex}`);
     menuCategoryRef.innerHTML = '';
     menuCategoryRef.innerHTML += pizzeria.menuCategory[menuCategoryIndex].category;
+    standardHighlightMenuCategory();
+}
+
+function standardHighlightMenuCategory(){
+    let startMenuCategoryRef = document.getElementById('menu_category0');
+    startMenuCategoryRef.classList.add('selected_menu_category');
+}
+
+function highlightChosenMenuCategory(menuCategoryIndex) {
+    let menuToBeHighlightedRef = document.getElementById(`menu_category${menuCategoryIndex}`);
+    let removeHighlightRef = document.querySelector('.selected_menu_category');
+    removeHighlightRef.classList.remove('selected_menu_category');
+    menuToBeHighlightedRef.classList.add('selected_menu_category');
 }
 
 function renderDish(menuCategoryIndex) {
@@ -143,7 +156,6 @@ function removeDNone(id) {
     elementToBeRemoved.classList.remove('d_none');
 }
 
-// Funktion um den Preis zu berechnen
 function calculatePrice(basketIndex) {
     let dishPriceRef = document.getElementById(`filled_basket_dish_price${basketIndex}`);
     let dishQuantityRef = document.getElementById(`filled_basket_dish_quantity${basketIndex}`)
@@ -153,7 +165,6 @@ function calculatePrice(basketIndex) {
     dishPriceRef.innerHTML = dishTotalPrice.toFixed(2).replace('.', ',') + ' €';
 }
 
-// Funktion um den gesamten Preis zu erhalten
 function calculateTotalPrice(){
     let subtotal = 0;
     let deliveryCost = pizzeria.deliveryCost;
@@ -198,6 +209,32 @@ function removeDishFromBasket(basketIndex) {
     renderFilledBasket();
     calculateTotalPrice();
 }
+
+function scrollToCorrectHref(event){
+    let link = event.currentTarget;
+    let href = link.getAttribute('href');
+    
+    if (href === '#menu_name0') {
+        event.preventDefault();
+        window.scrollTo({
+            top: 500,
+        });
+    }
+}
+
+function handleScroll() {
+    const menuCategories = document.getElementById('menu_categories');
+    const rect = menuCategories.getBoundingClientRect();
+
+    // Hier 0 ist die Oberkante des Viewports
+    if (rect.top <= 113) {
+        menuCategories.classList.add('is_sticky'); // Klasse hinzufügen, wenn sticky
+    } else {
+        menuCategories.classList.remove('is_sticky'); // Klasse entfernen, wenn nicht sticky
+    }
+}
+
+window.addEventListener('scroll', handleScroll);
 
 function bubblingProtection(event) {
     event.stopPropagation();

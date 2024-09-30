@@ -41,16 +41,19 @@
     display: flex;
     font-weight: bold;
     font-size: 14px;
-    margin: 0px 80px;
+    padding: 0px 80px;
     position: sticky;
     top: 108px;
     z-index: 10;
     background: inherit;
+    gap: 16px;
+    padding-bottom: 24px;
 }
 
-.menu_category_selection{
-    display: flex;
-    gap: 16px;
+.selected_menu_category{
+    background-color: black;
+    color: white;
+    border-radius: 90px;
 }
 
 .menu_category_selection a{
@@ -73,8 +76,13 @@
     overflow: auto;
 }
 
+.is_sticky{
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
 .menu_header{
     margin-top: 40px;
+    scroll-margin-top: 150px;
 }
 
 .dish_content{
@@ -109,4 +117,27 @@
 .dish span{
     font-weight: bold;
     font-size: 20px;
+}
+
+.basket_button{
+    display: flex;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background-color: #F36705;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 90px;
+    position: sticky;
+    bottom: 12px;
+    left: auto;
+    z-index: 10;
+    width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.basket_button p{
+    color: white;
 }

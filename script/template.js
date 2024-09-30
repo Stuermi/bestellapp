@@ -20,6 +20,11 @@ function getContentTemplate() {
             <div id="menu_categories" class="menu_categories"></div>
 
             <div id="menu" class="menu"></div>
+
+            <div id="basket_button" class="basket_button">
+                <img class="basket_icon_filter" src="assets/icon/shopping-basket.png" alt="Warenkorb Icon">
+                <p>Warenkorb (total_amount €)</p>
+            </div>
         </section>
 
         <section class="side_section">
@@ -60,7 +65,7 @@ function getContentTemplate() {
 function getMenuCategoriesTemplate(menuCategoryIndex) {
     return `
                 <nav class="menu_category_selection">
-                    <a id="menu_category${menuCategoryIndex}" href="#menu_name${menuCategoryIndex}"></a>
+                    <a onclick="highlightChosenMenuCategory(${menuCategoryIndex}); scrollToCorrectHref(event)" id="menu_category${menuCategoryIndex}" href="#menu_name${menuCategoryIndex}"></a>
                 </nav>`
 }
 

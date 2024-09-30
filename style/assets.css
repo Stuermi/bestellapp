@@ -12,6 +12,11 @@
     width: 40px;
 }
 
+.basket_icon_filter{
+    width: 32px;
+    filter: invert();
+}
+
 .rating_star{
     width: 16px;
 }
