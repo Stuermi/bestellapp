@@ -1,4 +1,4 @@
-function getContentTemplate(menuCategoryIndex) {
+function getContentTemplate() {
     return `<section class="main_section">
             <div class="header_image_container">
                 <img class="header_image" src="./assets/img/pizza.jpg" alt="Pizza Bild">
@@ -40,15 +40,15 @@ function getContentTemplate(menuCategoryIndex) {
                     <div class="order_price">
                         <div class="subtotal">
                             <p>Zwischensumme</p>
-                            <p>subtotal_amount €</p>
+                            <p id="subtotal_amount"></p>
                         </div>
                         <div class="delivery_cost">
                             <p>Lieferkosten</p>
-                            <p>delivery_cost €</p>
+                            <p id="delivery_cost"></p>
                         </div>
                         <div class="total">
                             <p>Gesamtsumme</p>
-                            <p>total_amount €</p>
+                            <p id="total_amount"></p>
                         </div>
                     </div>
                 </div>
@@ -89,16 +89,16 @@ function getFilledBasketTemplate(basketIndex) {
                     </div>
                     <div class="filled_basket_row">
                         <div class="calculator">
-                            <div title="Menge reduzieren" class="calc_button">
+                            <div onclick="reduceQuantity(${basketIndex})" title="Menge reduzieren" class="calc_button">
                                 <img class="minus_icon_calc" src="./assets/icon/minus_icon_color.png" alt="Minus Icon">
                             </div>
-                            <p id="filled_basket_quantity${basketIndex}">amount_x</p>
-                            <div title="Menge hinzufügen" class="calc_button">
+                            <p id="filled_basket_dish_quantity${basketIndex}">amount_x</p>
+                            <div onclick="addQuantity(${basketIndex})" title="Menge hinzufügen" class="calc_button">
                                 <img class="plus_icon_calc" src="./assets/icon/plus_icon_color.png" alt="Plus Icon">
                             </div>
                         </div>
                         <p id="filled_basket_dish_price${basketIndex}">price_dish</p>
-                        <img title="Gericht entfernen" class="trash_icon" src="./assets/icon/trash_can_color.png"
+                        <img onclick="removeDishFromBasket(${basketIndex})" title="Gericht entfernen" class="trash_icon" src="./assets/icon/trash_can_color.png"
                             alt="">
                     </div>`
 }

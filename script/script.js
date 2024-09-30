@@ -1,5 +1,9 @@
 let basket = [];
 
+let total = [{
+
+}];
+
 function init() {
     // getFromLocalStorage();
     renderMainContent();
@@ -64,19 +68,29 @@ function loadDish(menuCategoryIndex, dishIndex) {
 
 function addDishToBasket(menuCategoryIndex, dishIndex) {
     if (!checkDishInBasket(menuCategoryIndex, dishIndex)) {
-        basket.push({
-            "dish": pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish,
-            "quantity": 1,
-            "dish_price": pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].priceDish,
-        })
+        pushToBasket(menuCategoryIndex, dishIndex);
     } else if (checkDishInBasket(menuCategoryIndex, dishIndex)) {
         for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
-            if (basket[basketIndex].dish === pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish){
+            if (basket[basketIndex].dish === pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish) {
                 basket[basketIndex].quantity++;
+                updateTotal(basketIndex);
             }
         }
     }
     renderFilledBasket();
+    calculateTotalPrice();
+}
+
+function pushToBasket(menuCategoryIndex, dishIndex) {
+    let dishPrice = pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].priceDish;
+    let quantity = 1;
+
+    basket.push({
+        "dish": pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish,
+        "quantity": quantity,
+        "dish_price": dishPrice,
+        "total": dishPrice * quantity
+    })
 }
 
 function checkDishInBasket(menuCategoryIndex, dishIndex) {
@@ -89,10 +103,9 @@ function checkDishInBasket(menuCategoryIndex, dishIndex) {
     return dishIsInBasket;
 }
 
-// Funktion um den Inhalt des filledBasket zu laden
 function renderFilledBasket() {
     let filledBasketContentRef = document.getElementById('filled_basket_content');
-    filledBasketContentRef.innerHTML ='';
+    filledBasketContentRef.innerHTML = '';
     for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
         filledBasketContentRef.innerHTML += getFilledBasketTemplate(basketIndex);
         loadFilledBasket(basketIndex);
@@ -100,13 +113,14 @@ function renderFilledBasket() {
     displayCorrectBasket();
 }
 
-function loadFilledBasket(basketIndex){
+function loadFilledBasket(basketIndex) {
     let filledBasketDishRef = document.getElementById(`filled_basket_dish${basketIndex}`);
-    let filledBasketQuantityRef = document.getElementById(`filled_basket_quantity${basketIndex}`);
+    let filledBasketQuantityRef = document.getElementById(`filled_basket_dish_quantity${basketIndex}`);
     let filledBasketDishPriceRef = document.getElementById(`filled_basket_dish_price${basketIndex}`);
     filledBasketDishRef.innerHTML = basket[basketIndex].dish;
     filledBasketQuantityRef.innerHTML = basket[basketIndex].quantity;
-    filledBasketDishPriceRef.innerHTML = basket[basketIndex].dish_price.toFixed(2).replace('.',',') + ' €';
+    filledBasketDishPriceRef.innerHTML = basket[basketIndex].dish_price.toFixed(2);
+    calculatePrice(basketIndex);
 }
 
 function displayCorrectBasket() {
@@ -129,25 +143,60 @@ function removeDNone(id) {
     elementToBeRemoved.classList.remove('d_none');
 }
 
-// // Funktion um den Preis zu berechnen
-// function calculatePrice() {
+// Funktion um den Preis zu berechnen
+function calculatePrice(basketIndex) {
+    let dishPriceRef = document.getElementById(`filled_basket_dish_price${basketIndex}`);
+    let dishQuantityRef = document.getElementById(`filled_basket_dish_quantity${basketIndex}`)
+    let dishPrice = parseFloat(dishPriceRef.innerHTML);
+    let dishQuantity = parseFloat(dishQuantityRef.innerHTML);
+    let dishTotalPrice = dishPrice * dishQuantity;
+    dishPriceRef.innerHTML = dishTotalPrice.toFixed(2).replace('.', ',') + ' €';
+}
 
-// }
+// Funktion um den gesamten Preis zu erhalten
+function calculateTotalPrice(){
+    let subtotal = 0;
+    let deliveryCost = pizzeria.deliveryCost;
+    let deliveryCostRef = document.getElementById('delivery_cost');
+    deliveryCostRef.innerHTML = pizzeria.deliveryCost.toFixed(2).replace('.', ',') + ' €';
+    let subtotalRef = document.getElementById('subtotal_amount');
+    let totalRef = document.getElementById('total_amount');
+    for (let totalIndex = 0; totalIndex < basket.length; totalIndex++) {
+        subtotal += basket[totalIndex].total;
+    }
+    subtotalRef.innerHTML = subtotal.toFixed(2).replace('.', ',') + ' €';
+    let total = subtotal + deliveryCost;
+    totalRef.innerHTML = total.toFixed(2).replace('.', ',') + ' €';
+}
 
-// // Funktion um Gericht aus dem Warenkorb zu entfernen
-// function removeDishFromBasket() {
+function addQuantity(basketIndex) {
+    basket[basketIndex].quantity++;
+    updateTotal(basketIndex);
+    renderFilledBasket();
+}
 
-// }
+function reduceQuantity(basketIndex) {
+    basket[basketIndex].quantity--;
+    if (basket[basketIndex].quantity == 0) {
+        removeDishFromBasket(basketIndex);
+    } else {
+        updateTotal(basketIndex);
+    }
+    renderFilledBasket();
+}
 
-// // Funktion um die Menge um 1 zu erhöhen
-// function addAmountToBasket() {
+function updateTotal(basketIndex){
+    let dishPrice = basket[basketIndex].dish_price;
+    let quantity = basket[basketIndex].quantity;
+    basket[basketIndex].total = dishPrice * quantity;
+    calculateTotalPrice();
 
-// }
+}
 
-// // Funktion um die Menge um 1 zu verringern
-// function removeAmountFromBasket() {
-
-// }
+function removeDishFromBasket(basketIndex) {
+    basket.splice(basketIndex)
+    renderFilledBasket();
+}
 
 function bubblingProtection(event) {
     event.stopPropagation();
