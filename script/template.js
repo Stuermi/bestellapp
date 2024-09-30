@@ -60,7 +60,7 @@ function getContentTemplate() {
 function getMenuCategoriesTemplate(menuCategoryIndex) {
     return `
                 <nav class="menu_category_selection">
-                    <a id="menu_category${menuCategoryIndex}" href="#"></a>
+                    <a id="menu_category${menuCategoryIndex}" href="#menu_name${menuCategoryIndex}"></a>
                 </nav>`
 }
 

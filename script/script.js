@@ -9,7 +9,6 @@ function init() {
     renderMainContent();
     renderMenuCategory();
     renderMenu();
-    addStickyClassOnScroll();
 }
 
 function renderMainContent() {
