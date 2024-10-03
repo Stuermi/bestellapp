@@ -36,6 +36,20 @@
         gap: 0;
     }
 
+    .responsive_menu_button{
+        display: flex;
+        margin-left: 24px;
+    }
+
+    .responsive_menu_category{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu_categories{
+        display: none;
+    }
+
     .pizzeria_logo{
         left: 24px;
     }

@@ -253,6 +253,28 @@ function openOverlay(basketIndex){
     renderFilledResponsiveBasket(basketIndex);
 }
 
+function toggleDNone(id){
+    let elementToHide = document.getElementById(id);
+    elementToHide.classList.toggle('d_none');
+}
+
+function openResponsiveNavbar(){
+    let navbarRef = document.getElementById('responsive_menu_navbar');
+    navbarRef.innerHTML = '';
+    for (let menuCategoryIndex = 0; menuCategoryIndex < pizzeria.menuCategory.length; menuCategoryIndex++) {
+        navbarRef.innerHTML += getResponsiveNavBarTemplate(menuCategoryIndex);
+    }
+    toggleDNone('open_responsive_menu');
+    toggleDNone('close_responsive_menu');
+}
+
+function closeResponsiveNavbar(){
+    let navbarRef = document.getElementById('responsive_menu_navbar');
+    navbarRef.innerHTML = '';
+    toggleDNone('close_responsive_menu');
+    toggleDNone('open_responsive_menu');
+}
+
 function renderResponsiveBasketButton(){
     let responsiveBasketButtonRef = document.getElementById('basket_button_container');
     responsiveBasketButtonRef.innerHTML = '';

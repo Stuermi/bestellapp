@@ -8,7 +8,7 @@
     margin: 0;
     scroll-behavior: smooth;
     font-family: Roboto;
-    color: #262626;
+    color: rgb(38, 38, 38);
 }
 
 ::-webkit-scrollbar {

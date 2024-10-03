@@ -23,6 +23,16 @@ function getContentTemplate() {
                 </div>
             </div>
 
+            <div class="responsive_menu_category is_sticky">
+                <div id="open_responsive_menu" class="responsive_menu_button" onclick="openResponsiveNavbar()">
+                    <img class="down_arrow_icon" src="./assets/icon/double_arrow_color.png" alt="Down Arrow Icon">
+                </div>
+                <div id="close_responsive_menu" class="responsive_menu_button d_none" onclick="closeResponsiveNavbar()">
+                    <img class="x_icon_close" src="./assets/icon/x_icon_color.png" alt="Close Icon">
+                </div>
+                <div id="responsive_menu_navbar" class="responsive_menu_navbar"></div>
+            </div>
+
             <div id="menu_categories" class="menu_categories"></div>
 
             <div id="menu" class="menu"></div>
@@ -149,7 +159,7 @@ function getFilledResponsiveBasketTemplate (basketIndex){
                     </div>`
 }
 
-function getOverlayTemplate(basketIndex){
+function getOverlayTemplate(){
     return `
                     <div id="basket_dialogue" class="basket_dialogue">
                     <div onclick="closeOverlay()" class="close_button">
@@ -178,4 +188,11 @@ function getOverlayTemplate(basketIndex){
                         </div>
                     </div>
                 </div>`
+}
+
+function getResponsiveNavBarTemplate(menuCategoryIndex){
+    return `
+                    <div class="responsive_nav_element">
+                        <a onclick="scrollToCorrectHref(event); closeResponsiveNavbar()" id="responsive_menu_category" href="#menu_name${menuCategoryIndex}">${pizzeria.menuCategory[menuCategoryIndex].category}</a>
+                    </div>`
 }

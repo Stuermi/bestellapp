@@ -52,3 +52,11 @@
     height: 20px;
     cursor: pointer;
 }
+
+.down_arrow_icon{
+    width: 40px;
+}
+
+.x_icon_close{
+    width: 32px;
+}
