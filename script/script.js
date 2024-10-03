@@ -91,7 +91,7 @@ function addDishToBasket(menuCategoryIndex, dishIndex) {
         }
     }
     renderFilledBasket();
-    calculateTotalPrice();
+    renderResponsiveBasketButton();
 }
 
 function pushToBasket(menuCategoryIndex, dishIndex) {
@@ -184,6 +184,7 @@ function addQuantity(basketIndex) {
     basket[basketIndex].quantity++;
     updateTotal(basketIndex);
     renderFilledBasket();
+    renderFilledResponsiveBasket();
 }
 
 function reduceQuantity(basketIndex) {
@@ -194,6 +195,7 @@ function reduceQuantity(basketIndex) {
         updateTotal(basketIndex);
     }
     renderFilledBasket();
+    renderFilledResponsiveBasket();
 }
 
 function updateTotal(basketIndex){
@@ -201,13 +203,14 @@ function updateTotal(basketIndex){
     let quantity = basket[basketIndex].quantity;
     basket[basketIndex].total = dishPrice * quantity;
     calculateTotalPrice();
-
 }
 
 function removeDishFromBasket(basketIndex) {
     basket.splice(basketIndex, 1);
     renderFilledBasket();
+    renderFilledResponsiveBasket();
     calculateTotalPrice();
+    calculateTotalPriceForResponsive()
 }
 
 function scrollToCorrectHref(event){
@@ -238,4 +241,97 @@ window.addEventListener('scroll', handleScroll);
 
 function bubblingProtection(event) {
     event.stopPropagation();
+}
+
+// Responsive Basket Functions
+function openOverlay(basketIndex){
+    let overlayRef = document.getElementById('overlay');
+    overlayRef.innerHTML = '';
+    overlayRef.innerHTML = getOverlayTemplate(basketIndex);
+    overlayRef.classList.toggle('d_none');
+    document.body.classList.add('no_scroll');
+    renderFilledResponsiveBasket(basketIndex);
+}
+
+function renderResponsiveBasketButton(){
+    let responsiveBasketButtonRef = document.getElementById('basket_button_container');
+    responsiveBasketButtonRef.innerHTML = '';
+    for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
+        responsiveBasketButtonRef.innerHTML = getResponsiveBasketButtonTemplate(basketIndex);
+    }
+    calculateResponsiveBasketValues();
+    calculateTotalQuantity();
+}
+
+function renderFilledResponsiveBasket(){
+    let filledResponsiveBasketRef = document.getElementById('filled_responsive_basket_content')
+    filledResponsiveBasketRef.innerHTML = '';
+    for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
+        filledResponsiveBasketRef.innerHTML += getFilledResponsiveBasketTemplate(basketIndex);
+        loadFilledResponsiveBasket(basketIndex);
+    }
+}
+
+function loadFilledResponsiveBasket(basketIndex) {
+    let filledResponsiveBasketDishRef = document.getElementById(`filled_responsive_basket_dish${basketIndex}`);
+    let filledResponsiveBasketQuantityRef = document.getElementById(`filled_responsive_basket_dish_quantity${basketIndex}`);
+    let filledResponsiveBasketDishPriceRef = document.getElementById(`filled_responsive_basket_dish_price${basketIndex}`);
+    filledResponsiveBasketDishRef.innerHTML = basket[basketIndex].dish;
+    filledResponsiveBasketQuantityRef.innerHTML = basket[basketIndex].quantity;
+    filledResponsiveBasketDishPriceRef.innerHTML = basket[basketIndex].dish_price.toFixed(2);
+    calculatePriceForResponsive(basketIndex);
+    calculateTotalPriceForResponsive();
+}
+
+function calculatePriceForResponsive(basketIndex) {
+    let responsiveDishPriceRef = document.getElementById(`filled_responsive_basket_dish_price${basketIndex}`);
+    let responsiveDishQuantityRef = document.getElementById(`filled_responsive_basket_dish_quantity${basketIndex}`)
+    let responsiveDishPrice = parseFloat(responsiveDishPriceRef.innerHTML);
+    let responsiveDishQuantity = parseFloat(responsiveDishQuantityRef.innerHTML);
+    let responsiveDishTotalPrice = responsiveDishPrice * responsiveDishQuantity;
+    responsiveDishPriceRef.innerHTML = responsiveDishTotalPrice.toFixed(2).replace('.', ',') + ' €';
+    calculateResponsiveBasketValues();
+    calculateTotalQuantity();
+}
+
+function calculateTotalPriceForResponsive(){
+    let subtotal = 0;
+    let deliveryCost = pizzeria.deliveryCost;
+    let deliveryCostRef = document.getElementById('responsive_delivery_cost');
+    deliveryCostRef.innerHTML = pizzeria.deliveryCost.toFixed(2).replace('.', ',') + ' €';
+    let subtotalRef = document.getElementById('responsive_subtotal_amount');
+    let totalRef = document.getElementById('responsive_total_amount');
+    for (let totalIndex = 0; totalIndex < basket.length; totalIndex++) {
+        subtotal += basket[totalIndex].total;
+    }
+    subtotalRef.innerHTML = subtotal.toFixed(2).replace('.', ',') + ' €';
+    let total = subtotal + deliveryCost;
+    totalRef.innerHTML = total.toFixed(2).replace('.', ',') + ' €';
+}
+
+function calculateTotalQuantity(){
+    let quantity = 0;
+    let quantityRef = document.getElementById('basket_button_quantity_p');
+    quantityRef.innerHTML = '';
+    for (let totalIndex = 0; totalIndex < basket.length; totalIndex++) {
+        quantity += basket[totalIndex].quantity;
+    }
+    quantityRef.innerHTML = quantity;
+}
+
+function calculateResponsiveBasketValues(){
+    let subtotal = 0;
+    let deliveryCost = pizzeria.deliveryCost;
+    let totalRef = document.getElementById('responsive_basket_button_total');
+    for (let totalIndex = 0; totalIndex < basket.length; totalIndex++) {
+        subtotal += basket[totalIndex].total;
+    }
+    let total = subtotal + deliveryCost;
+    totalRef.innerHTML = 'Warenkorb ' + `(${total.toFixed(2).replace('.', ',') + ' €'})`;
+}
+
+function closeOverlay() {
+    let overlayRef = document.getElementById('overlay');
+    overlayRef.classList.toggle('d_none');
+    document.body.classList.remove('no_scroll');
 }

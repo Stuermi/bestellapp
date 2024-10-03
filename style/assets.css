@@ -13,7 +13,7 @@
 }
 
 .basket_icon_filter{
-    width: 32px;
+    width: 24px;
     filter: invert();
 }
 
@@ -30,6 +30,10 @@
     height: 16px;
     width: 16px;
 } 
+
+.x_icon{
+    width: 20px;
+}
 
 .minus_icon_calc{
     width: 16px;

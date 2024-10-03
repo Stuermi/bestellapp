@@ -6,4 +6,61 @@
     .side_section{
         display: none;
     }
+
+    .basket_button_container{
+        display: flex;
+    }
+
+    .overlay{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 20;
+    }
+}
+
+@media (max-width: 680px){
+
+    .restaurant_info{
+        margin: 0px 24px;
+    }
+
+    .restaurant_information_row{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+    .pizzeria_logo{
+        left: 24px;
+    }
+
+    .menu_categories{
+        padding: 0px 24px;
+    }
+
+    .menu{
+        margin: 0px 24px;
+    }
+
+    .dish{
+        padding-right: 60px;
+    }
+
+    .dish h2{
+        font-size: 18px;
+    }
+
+    .dish p{
+        font-size: 16px;
+    }
+
+    .dish span{
+        font-size: 18px;
+    }
 }
