@@ -18,6 +18,8 @@
 
 .side_header h2{
     padding: 24px 0px;
+    z-index: 20;
+    background: white;
 }
 
 .basket{
@@ -32,6 +34,10 @@
     text-align: center;
     padding: 80px 0px;
     gap: 12px;
+}
+
+.filled_basket{
+    position: relative;
 }
 
 .filled_basket_header{
@@ -49,6 +55,11 @@
     margin-bottom: 24px;
 }
 
+.filled_basket_content{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
 .calculator{
     display: flex;
     align-items: center;
@@ -56,8 +67,19 @@
     gap: 8px;
 }
 
+.button_row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+
 .order_price{
     display: flex;
+    background-color: white;
+    position: sticky;
+    bottom: 72px;
     flex-direction: column;
     padding: 24px;
     gap: 4px;

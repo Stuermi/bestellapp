@@ -40,7 +40,7 @@ function getContentTemplate() {
             <div id="basket_button_container" class="basket_button_container"></div>
 
             <div id="overlay" class="overlay d_none">
-            <div id="basket_dialogue" class="basket_dialogue">
+                <div id="basket_dialogue" class="basket_dialogue">
                     <div onclick="closeOverlay()" class="close_button">
                         <img class="x_icon" title="Schließen" src="./assets/icon/x_icon_color.png" alt="Close Icon">
                     </div>
@@ -49,7 +49,7 @@ function getContentTemplate() {
                         <hr>
                     </div>
                     <div id="filled_responsive_basket">
-                        <div id="filled_responsive_basket_content"></div>
+                        <div class="filled_responsive_basket_content" id="filled_responsive_basket_content"></div>
                         <hr>
                         <div class="order_price">
                             <div class="subtotal">
@@ -65,9 +65,15 @@ function getContentTemplate() {
                                 <p id="responsive_total_amount"></p>
                             </div>
                         </div>
+                        <hr>
+                        <div class="order_button_row">
+                            <a onclick="clearLocalStorage()" href="./order_filled.html">
+                                <button class="order_button">Bestellen</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                </div>
+            </div>
 
         </section>
 
@@ -85,7 +91,7 @@ function getContentTemplate() {
                 </div>
 
                 <div id="filled_basket" class="filled_basket d_none">
-                <div id="filled_basket_content"></div>
+                <div class="filled_basket_content" id="filled_basket_content"></div>
                     <hr>
                     <div class="order_price">
                         <div class="subtotal">
@@ -100,6 +106,12 @@ function getContentTemplate() {
                             <p>Gesamtsumme</p>
                             <p id="total_amount"></p>
                         </div>
+                    </div>
+                    <hr>
+                    <div class="order_button_row">
+                            <a onclick="clearLocalStorage()" href="./order_filled.html">
+                                <button class="order_button">Bestellen</button>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -122,7 +134,7 @@ function getMenuTemplate(menuCategoryIndex) {
 
 function getDishTemplate(menuCategoryIndex, dishIndex) {
     return `
-                <div onclick="addDishToBasket(${menuCategoryIndex}, ${dishIndex})" id="dish${menuCategoryIndex}${dishIndex}" class="dish">
+                <div id="dish${menuCategoryIndex}${dishIndex}" class="dish">
                     <h2 id="dish_name${menuCategoryIndex}${dishIndex}"></h2>
                     <p id="ingredients${menuCategoryIndex}${dishIndex}"></p>
                     <span id="dish_price${menuCategoryIndex}${dishIndex}"></span>

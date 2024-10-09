@@ -112,6 +112,29 @@ main{
     background-color: #e0e0e0;
 }
 
+.order_button_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.order_button {
+    height: 32px;
+    border: none;
+    background-color: #F36705;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.order_button:hover{
+    background-color: rgb(241, 93, 0);
+}
+
 hr{
     border-width: 0;
     color: rgba(0, 0, 0, 0.3);
@@ -123,4 +146,7 @@ footer{
     height: 128px;
     background-color: #EFEDEA;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }

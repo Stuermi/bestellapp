@@ -5,10 +5,15 @@ let total = [{
 }];
 
 function init() {
-    // getFromLocalStorage();
+    getFromLocalStorage();
     renderMainContent();
     renderMenuCategory();
     renderMenu();
+    renderFilledBasket();
+    if (basket.length >= 1) {
+        renderResponsiveBasketButton();
+        renderFilledResponsiveBasket();
+    }      
     toggleResponsiveBasketButtonContainer();
 }
 
@@ -88,17 +93,15 @@ function addDishToBasket(menuCategoryIndex, dishIndex) {
             if (basket[basketIndex].dish === pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish) {
                 basket[basketIndex].quantity++;
                 updateTotal(basketIndex);
-            }
-        }
-    }
+            }}}
     renderFilledBasket();
     renderResponsiveBasketButton();
+    saveToLocalStorage();
 }
 
 function pushToBasket(menuCategoryIndex, dishIndex) {
     let dishPrice = pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].priceDish;
     let quantity = 1;
-
     basket.push({
         "dish": pizzeria.menuCategory[menuCategoryIndex].items[dishIndex].dish,
         "quantity": quantity,
@@ -123,6 +126,7 @@ function renderFilledBasket() {
     for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
         filledBasketContentRef.innerHTML += getFilledBasketTemplate(basketIndex);
         loadFilledBasket(basketIndex);
+        calculateTotalPrice();
     }
     displayCorrectBasket();
 }
@@ -166,7 +170,7 @@ function calculatePrice(basketIndex) {
     dishPriceRef.innerHTML = dishTotalPrice.toFixed(2).replace('.', ',') + ' €';
 }
 
-function calculateTotalPrice(){
+function calculateTotalPrice() {
     let subtotal = 0;
     let deliveryCost = pizzeria.deliveryCost;
     let deliveryCostRef = document.getElementById('delivery_cost');
@@ -186,6 +190,7 @@ function addQuantity(basketIndex) {
     updateTotal(basketIndex);
     renderFilledBasket();
     renderFilledResponsiveBasket();
+    saveToLocalStorage();
 }
 
 function reduceQuantity(basketIndex) {
@@ -197,6 +202,7 @@ function reduceQuantity(basketIndex) {
     }
     renderFilledBasket();
     renderFilledResponsiveBasket();
+    saveToLocalStorage();
 }
 
 function updateTotal(basketIndex){
@@ -213,29 +219,31 @@ function removeDishFromBasket(basketIndex) {
     calculateTotalPrice();
     calculateTotalPriceForResponsive();
     toggleResponsiveBasketButtonContainer();
+    saveToLocalStorage();
 }
 
-function scrollToCorrectHref(event){
-    let link = event.currentTarget;
-    let href = link.getAttribute('href');
-    
-    if (href === '#menu_name0') {
-        event.preventDefault();
-        window.scrollTo({
-            top: 500,
-        });
-    }
-}
+function scrollToCorrectHref(event) {
+    if (window.innerWidth <= 680) { 
+        let link = event.currentTarget;
+        let href = link.getAttribute('href');
+        let targetElement = document.querySelector(href); 
+        if (targetElement) {
+            event.preventDefault(); 
+            let offset = 525; 
+            let targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({
+                top: targetPosition
+            });
+}}}
 
 function handleScroll() {
-    const menuCategories = document.getElementById('menu_categories');
-    const rect = menuCategories.getBoundingClientRect();
+    let menuCategories = document.getElementById('menu_categories');
+    let rect = menuCategories.getBoundingClientRect();
 
-    // Hier 0 ist die Oberkante des Viewports
     if (rect.top <= 113) {
-        menuCategories.classList.add('is_sticky'); // Klasse hinzufügen, wenn sticky
+        menuCategories.classList.add('is_sticky');
     } else {
-        menuCategories.classList.remove('is_sticky'); // Klasse entfernen, wenn nicht sticky
+        menuCategories.classList.remove('is_sticky');
     }
 }
 
