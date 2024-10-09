@@ -39,7 +39,35 @@ function getContentTemplate() {
 
             <div id="basket_button_container" class="basket_button_container"></div>
 
-            <div id="overlay" class="overlay d_none"></div>
+            <div id="overlay" class="overlay d_none">
+            <div id="basket_dialogue" class="basket_dialogue">
+                    <div onclick="closeOverlay()" class="close_button">
+                        <img class="x_icon" title="Schließen" src="./assets/icon/x_icon_color.png" alt="Close Icon">
+                    </div>
+                    <div class="side_header">
+                        <h2>Warenkorb</h2>
+                        <hr>
+                    </div>
+                    <div id="filled_responsive_basket">
+                        <div id="filled_responsive_basket_content"></div>
+                        <hr>
+                        <div class="order_price">
+                            <div class="subtotal">
+                                <p>Zwischensumme</p>
+                                <p id="responsive_subtotal_amount"></p>
+                            </div>
+                            <div class="delivery_cost">
+                                <p>Lieferkosten</p>
+                                <p id="responsive_delivery_cost"></p>
+                            </div>
+                            <div class="total">
+                                <p>Gesamtsumme</p>
+                                <p id="responsive_total_amount"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
 
         </section>
 
@@ -157,37 +185,6 @@ function getFilledResponsiveBasketTemplate (basketIndex){
                         <img onclick="removeDishFromBasket(${basketIndex})" title="Gericht entfernen" class="trash_icon" src="./assets/icon/trash_can_color.png"
                             alt="">
                     </div>`
-}
-
-function getOverlayTemplate(){
-    return `
-                    <div id="basket_dialogue" class="basket_dialogue">
-                    <div onclick="closeOverlay()" class="close_button">
-                        <img class="x_icon" title="Schließen" src="./assets/icon/x_icon_color.png" alt="Close Icon">
-                    </div>
-                    <div class="side_header">
-                        <h2>Warenkorb</h2>
-                        <hr>
-                    </div>
-                    <div id="filled_responsive_basket">
-                        <div id="filled_responsive_basket_content"></div>
-                        <hr>
-                        <div class="order_price">
-                            <div class="subtotal">
-                                <p>Zwischensumme</p>
-                                <p id="responsive_subtotal_amount"></p>
-                            </div>
-                            <div class="delivery_cost">
-                                <p>Lieferkosten</p>
-                                <p id="responsive_delivery_cost"></p>
-                            </div>
-                            <div class="total">
-                                <p>Gesamtsumme</p>
-                                <p id="responsive_total_amount"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>`
 }
 
 function getResponsiveNavBarTemplate(menuCategoryIndex){

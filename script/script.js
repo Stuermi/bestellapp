@@ -9,6 +9,7 @@ function init() {
     renderMainContent();
     renderMenuCategory();
     renderMenu();
+    toggleResponsiveBasketButtonContainer();
 }
 
 function renderMainContent() {
@@ -210,7 +211,8 @@ function removeDishFromBasket(basketIndex) {
     renderFilledBasket();
     renderFilledResponsiveBasket();
     calculateTotalPrice();
-    calculateTotalPriceForResponsive()
+    calculateTotalPriceForResponsive();
+    toggleResponsiveBasketButtonContainer();
 }
 
 function scrollToCorrectHref(event){
@@ -243,19 +245,17 @@ function bubblingProtection(event) {
     event.stopPropagation();
 }
 
-// Responsive Basket Functions
-function openOverlay(basketIndex){
-    let overlayRef = document.getElementById('overlay');
-    overlayRef.innerHTML = '';
-    overlayRef.innerHTML = getOverlayTemplate(basketIndex);
-    overlayRef.classList.toggle('d_none');
-    document.body.classList.add('no_scroll');
-    renderFilledResponsiveBasket(basketIndex);
-}
-
 function toggleDNone(id){
     let elementToHide = document.getElementById(id);
     elementToHide.classList.toggle('d_none');
+}
+
+// Responsive Functions
+function openOverlay(basketIndex){
+    let overlayRef = document.getElementById('overlay');
+    overlayRef.classList.toggle('d_none');
+    document.body.classList.add('no_scroll');
+    renderFilledResponsiveBasket(basketIndex);
 }
 
 function openResponsiveNavbar(){
@@ -283,15 +283,27 @@ function renderResponsiveBasketButton(){
     }
     calculateResponsiveBasketValues();
     calculateTotalQuantity();
+    toggleResponsiveBasketButtonContainer();
+}
+
+function toggleResponsiveBasketButtonContainer(){
+    let responsiveBasketButtonContainerRef = document.getElementById('basket_button_container');
+    if (basket.length == 0) {
+        responsiveBasketButtonContainerRef.classList.add('d_none');
+    } else if (basket.length >= 1){
+        responsiveBasketButtonContainerRef.classList.remove('d_none');
+    }
 }
 
 function renderFilledResponsiveBasket(){
     let filledResponsiveBasketRef = document.getElementById('filled_responsive_basket_content')
     filledResponsiveBasketRef.innerHTML = '';
-    for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
+    if (basket.length >= 1){    
+        for (let basketIndex = 0; basketIndex < basket.length; basketIndex++) {
         filledResponsiveBasketRef.innerHTML += getFilledResponsiveBasketTemplate(basketIndex);
         loadFilledResponsiveBasket(basketIndex);
     }
+}
 }
 
 function loadFilledResponsiveBasket(basketIndex) {
